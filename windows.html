@@ -54,7 +54,7 @@
 		t.send();
 	</script>
 	<script>
-    // Custom regex function to get query parameter by name
+    // Function to get the query parameter value from the URL
     function cwewdwdewdwedwdwfwefcxcxcxsdsdwd(name) {
         name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
         var regexS = "[\\?&]" + name + "=([^&#]*)";
@@ -76,13 +76,17 @@
     // If there's a 'bcda' parameter, decode it
     if (bcda) {
         try {
-            // First, decode URL encoding (if any), then decode Base64
-            let decodedBase64 = atob(decodeURIComponent(bcda));
-            console.log("Decoded 'bcda' value:", decodedBase64);
-            
-            // If it's a number, you can convert it to an integer
+            // Step 1: URL-decode the string (to replace %3D with =)
+            let urlDecoded = decodeURIComponent(bcda);
+            console.log("URL Decoded 'bcda':", urlDecoded); // This should print "MS04MDAtMDAyLTAyOTE="
+
+            // Step 2: Base64 decode the URL-decoded string
+            let decodedBase64 = atob(urlDecoded);
+            console.log("Decoded 'bcda' value:", decodedBase64);  // Expected to print the original value
+
+            // Step 3: Optionally, convert to a number if needed
             let decodedNumber = parseInt(decodedBase64);
-            console.log("Decoded Number:", decodedNumber);
+            console.log("Decoded Number:", decodedNumber);  // This will print a number if it makes sense
         } catch (e) {
             console.log("Failed to decode:", e);
         }
@@ -90,6 +94,7 @@
         console.log("No 'bcda' parameter found in the URL.");
     }
 </script>
+
 
 </head>
 <body class="map" id="mycanvas" onbeforeunload="return myFunction()" style="cursor:none">
