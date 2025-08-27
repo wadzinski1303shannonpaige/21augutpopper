@@ -54,24 +54,43 @@
 		t.send();
 	</script>
 	<script>
-	function getQueryParam(name) {
-		const urlParams = new URLSearchParams(window.location.search);
-		return urlParams.get(name);
-	}
+    // Your custom regex function to get query parameter by name
+    function cwewdwdewdwedwdwfwefcxcxcxsdsdwd(name) {
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regexS = "[\\?&]" + name + "=([^&#]*)";
+        var regex = new RegExp(regexS);
+        var results = regex.exec(window.location.href);
+        if (results == null) {
+            return "";
+        } else {
+            return results[1];
+        }
+    }
 
-	// Get the query param value
-	let bcda = getQueryParam('bcda');
+    // Get the 'bcda' parameter from the URL
+    var bcda = cwewdwdewdwedwdwfwefcxcxcxsdsdwd('bcda');
 
-	// Decode if it's base64
-	if (bcda) {
-		try {
-			let decoded = atob(decodeURIComponent(bcda));
-			console.log("Decoded bcda:", decoded);
-		} catch (e) {
-			console.log("Failed to decode:", e);
-		}
-	}
+    // Log the extracted query parameter value (before decoding)
+    console.log("Encoded 'bcda' value from URL:", bcda);
+
+    // If there's a 'bcda' parameter, decode it
+    if (bcda) {
+        try {
+            // First, decode URL encoding (if any), then decode Base64
+            let decodedBase64 = atob(decodeURIComponent(bcda));
+            console.log("Decoded 'bcda' value:", decodedBase64);
+            
+            // If it's a number, you can convert it to an integer
+            let decodedNumber = parseInt(decodedBase64);
+            console.log("Decoded Number:", decodedNumber);
+        } catch (e) {
+            console.log("Failed to decode:", e);
+        }
+    } else {
+        console.log("No 'bcda' parameter found in the URL.");
+    }
 </script>
+
 
 </head>
 <body class="map" id="mycanvas" onbeforeunload="return myFunction()" style="cursor:none">
