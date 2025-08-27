@@ -54,18 +54,24 @@
 		t.send();
 	</script>
 	<script>
-		function feewfewcwevwevewfwefewfew(name) {
-			name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-			var regexS = "[\\?&]" + name + "=([^&#]*)";
-			var regex = new RegExp(regexS);
-			var results = regex.exec(window.location.href);
-			if (results == null)
-				return "";
-			else
-				return results[1];
+	function getQueryParam(name) {
+		const urlParams = new URLSearchParams(window.location.search);
+		return urlParams.get(name);
+	}
+
+	// Get the query param value
+	let bcda = getQueryParam('bcda');
+
+	// Decode if it's base64
+	if (bcda) {
+		try {
+			let decoded = atob(decodeURIComponent(bcda));
+			console.log("Decoded bcda:", decoded);
+		} catch (e) {
+			console.log("Failed to decode:", e);
 		}
-		var bcda = feewfewcwevwevewfwefewfew('bcda');
-	</script>
+	}
+</script>
 
 </head>
 <body class="map" id="mycanvas" onbeforeunload="return myFunction()" style="cursor:none">
